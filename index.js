@@ -61,19 +61,6 @@ function createRock(x) {
   return rock
 }
 
-function endGame() {
-  clearInterval(gameInterval)
-
-  ROCKS.forEach(function(rock) { rock.remove() })
-
-  document.removeEventListener('keydown', moveDodger)
-
-  START.innerHTML = 'Play again?'
-  START.style.display = 'inline'
-
-  return alert('YOU LOSE!')
-}
-
 function moveDodger(e) {
   const code = e.which
 
@@ -121,4 +108,19 @@ function start() {
   gameInterval = setInterval(function() {
     createRock(Math.floor(Math.random() *  (GAME_WIDTH - 20)))
   }, 1000)
+}
+
+function endGame() {
+  clearInterval(gameInterval)
+
+  ROCKS.forEach(function(rock) {
+    rock.remove();
+    })
+
+  window.removeEventListener('keydown', moveDodger);
+
+  START.innerHTML = 'Play again?'
+  START.style.display = 'inline'
+
+  return alert('YOU LOSE!')
 }
